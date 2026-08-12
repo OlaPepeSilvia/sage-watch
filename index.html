@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keep Sage Alive</title>
+<meta name="description" content="The one place to see when Sage needs a sitter, log dates you can't do, and find her food and insurance details.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f3efe6;
+    --ink: #26231c;
+    --ink-soft: #6b6455;
+    --moss: #4a6b3a;
+    --moss-deep: #33502a;
+    --clay: #c96f4a;
+    --line: #d9d2c2;
+    --card: #fbf9f3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    padding: 72px 0 40px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(44px, 9vw, 80px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  h1 .plant { color: var(--moss); font-style: italic; }
+  .tagline {
+    margin: 20px auto 0;
+    max-width: 480px;
+    font-size: 17px;
+    color: var(--ink-soft);
+  }
+
+  .quick {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .quick a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    padding: 9px 16px;
+    border-radius: 999px;
+    transition: border-color .15s, transform .15s;
+  }
+  .quick a:hover { border-color: var(--moss); transform: translateY(-1px); }
+
+  section { padding: 40px 0; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: none; }
+
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .sec-num {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--clay);
+    font-weight: 500;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+  }
+  .sec-note { color: var(--ink-soft); font-size: 15px; margin-bottom: 22px; max-width: 640px; }
+
+  .cal-frame {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 10px;
+    overflow: hidden;
+  }
+  .cal-frame iframe { width: 100%; height: 560px; border: 0; border-radius: 8px; display: block; }
+  .cal-placeholder {
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--ink-soft);
+    border: 2px dashed var(--line);
+    border-radius: 8px;
+    padding: 30px;
+  }
+  .cal-placeholder strong { color: var(--ink); font-size: 17px; margin-bottom: 8px; font-weight: 600; }
+  .cal-placeholder code {
+    font-family: ui-monospace, monospace;
+    background: var(--paper);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  .how {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-top: 18px;
+  }
+  .how h3 { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 12px; letter-spacing: 0.02em; }
+  .how ol { margin: 0; padding-left: 20px; }
+  .how li { margin-bottom: 8px; font-size: 15px; color: var(--ink); }
+  .how li:last-child { margin-bottom: 0; }
+  .tag {
+    display: inline-block;
+    font-family: ui-monospace, monospace;
+    font-size: 13px;
+    background: var(--moss);
+    color: #fff;
+    padding: 1px 8px;
+    border-radius: 5px;
+  }
+
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 620px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px;
+  }
+  .card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .card .sub { font-size: 13px; color: var(--ink-soft); margin-bottom: 16px; }
+  .field { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 15px; }
+  .field:first-of-type { border-top: none; }
+  .field .k { color: var(--ink-soft); }
+  .field .v { color: var(--ink); font-weight: 500; text-align: right; }
+  .card.wide { grid-column: 1 / -1; }
+
+  .callout {
+    background: #fbf3ee;
+    border: 1px solid #eccdbc;
+    border-radius: 14px;
+    padding: 18px 22px;
+    font-size: 15px;
+    color: #7a3f24;
+    margin-top: 18px;
+  }
+  .callout strong { color: #5f2f18; }
+
+  footer {
+    text-align: center;
+    padding: 50px 0 60px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    border-top: 1px solid var(--line);
+  }
+  footer .paw { color: var(--moss); }
+
+  a.inline { color: var(--moss-deep); text-decoration: underline; text-underline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Sage's sitting HQ</p>
+    <h1>Keep <span class="plant">Sage</span> alive</h1>
+    <p class="tagline">One place to see when Sage needs a sitter, block out days you can't do, and find everything you'd need while she's with you.</p>
+    <nav class="quick">
+      <a href="#calendar">Calendar</a>
+      <a href="#food">Food</a>
+      <a href="#insurance">Insurance</a>
+      <a href="#sage">About Sage</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section id="calendar">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>The calendar</h2>
+    </div>
+    <p class="sec-note">This shows when Sage needs sitting and the days people have blocked out. To add days you can't do, open the shared Google Calendar (link below) and add an all-day event.</p>
+
+    <div class="cal-frame">
+      <!-- ============================================================
+           PASTE YOUR GOOGLE CALENDAR EMBED CODE HERE.
+           In Google Calendar: Settings > [your Sage calendar] >
+           "Integrate calendar" > copy the "Embed code" iframe and
+           replace the placeholder div below with it.
+           ============================================================ -->
+      <div class="cal-placeholder">
+        <strong>Calendar goes here</strong>
+        <span>Replace this box with the <code>&lt;iframe&gt;</code> embed code from your Sage Google Calendar settings.</span>
+      </div>
+    </div>
+
+    <div class="how">
+      <h3>How to log a day you can't sit</h3>
+      <ol>
+        <li>Open the shared calendar: <a class="inline" href="#" id="cal-link">add your calendar link here</a></li>
+        <li>Tap the day you're not available and add an all-day event.</li>
+        <li>Title it like <span class="tag">Dan — can't sit</span> so it's clear at a glance.</li>
+        <li>It'll show up here automatically. Done.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="food">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Food</h2>
+    </div>
+    <p class="sec-note">What she eats, how much, and when the deliveries land so nobody panics at an empty bowl.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Meals</h3>
+        <p class="sub">Keep to this and she's a happy dog</p>
+        <div class="field"><span class="k">Breakfast</span><span class="v">— add amount</span></div>
+        <div class="field"><span class="k">Dinner</span><span class="v">— add amount</span></div>
+        <div class="field"><span class="k">Food type / brand</span><span class="v">— add here</span></div>
+        <div class="field"><span class="k">Treats / no-gos</span><span class="v">— add here</span></div>
+      </div>
+      <div class="card">
+        <h3>Deliveries</h3>
+        <p class="sub">When fresh food turns up</p>
+        <div class="field"><span class="k">Next delivery</span><span class="v">— add date</span></div>
+        <div class="field"><span class="k">Frequency</span><span class="v">— e.g. every 4 weeks</span></div>
+        <div class="field"><span class="k">Supplier</span><span class="v">— add name</span></div>
+        <div class="field"><span class="k">Where it's stored</span><span class="v">— add spot</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="insurance">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>Insurance &amp; vet</h2>
+    </div>
+    <p class="sec-note">The details you'd want fast if something's wrong. Keep sensitive numbers here only if you're comfortable, since anyone with the site link can read them.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Pet insurance</h3>
+        <p class="sub">For emergencies</p>
+        <div class="field"><span class="k">Provider</span><span class="v">— add name</span></div>
+        <div class="field"><span class="k">Policy number</span><span class="v">— add number</span></div>
+        <div class="field"><span class="k">Claims phone</span><span class="v">— add number</span></div>
+        <div class="field"><span class="k">Cover notes</span><span class="v">— add detail</span></div>
+      </div>
+      <div class="card">
+        <h3>Vet</h3>
+        <p class="sub">Who to call</p>
+        <div class="field"><span class="k">Clinic</span><span class="v">— add name</span></div>
+        <div class="field"><span class="k">Phone</span><span class="v">— add number</span></div>
+        <div class="field"><span class="k">Address</span><span class="v">— add address</span></div>
+        <div class="field"><span class="k">After-hours / emergency</span><span class="v">— add number</span></div>
+      </div>
+      <div class="card wide">
+        <h3>Microchip &amp; ID</h3>
+        <p class="sub">In case she wanders</p>
+        <div class="field"><span class="k">Microchip number</span><span class="v">— add number</span></div>
+        <div class="field"><span class="k">Registered to</span><span class="v">— add name / phone</span></div>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>Heads up:</strong> a GitHub Pages site is public to anyone who has the link. If you'd rather not post the full policy or microchip numbers openly, write "ask Duncan" here and keep the real numbers somewhere private.
+    </div>
+  </section>
+
+  <section id="sage">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>About Sage</h2>
+    </div>
+    <p class="sec-note">The little things that make a stay go smoothly.</p>
+    <div class="cards">
+      <div class="card wide">
+        <h3>Good to know</h3>
+        <p class="sub">Habits, quirks, house rules</p>
+        <div class="field"><span class="k">Walks</span><span class="v">— how often / where</span></div>
+        <div class="field"><span class="k">Sleeps</span><span class="v">— where at night</span></div>
+        <div class="field"><span class="k">Scared of</span><span class="v">— e.g. thunder, vacuum</span></div>
+        <div class="field"><span class="k">Loves</span><span class="v">— add here</span></div>
+        <div class="field"><span class="k">Commands she knows</span><span class="v">— add here</span></div>
+        <div class="field"><span class="k">Duncan's number</span><span class="v">— add here</span></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><span class="paw">&#128062;</span> Keep Sage Alive &middot; a roster for Sage's people</p>
+  </div>
+</footer>
+
+</body>
+</html>
