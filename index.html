@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Keep Sage Alive</title>
+<title>Who's a good girl? Sage</title>
 <meta name="description" content="The one place to see when Sage needs a sitter, log dates you can't do, and find her food and insurance details.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,8 +27,42 @@
     color: var(--ink);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
-  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* Sage stickers tucked into the margins beside each section */
+  .sticker {
+    position: absolute;
+    filter: drop-shadow(0 6px 10px rgba(38,35,28,0.16));
+    opacity: 0.97;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .sticker img { display: block; width: 100%; height: auto; }
+  section { position: relative; }
+  header { position: relative; }
+  .sticker.s1 { width: 140px; top: 6px;   left: -118px; transform: rotate(-9deg); }
+  .sticker.s2 { width: 112px; top: 44px;  right: -104px; transform: rotate(7deg); }
+  .sticker.s3 { width: 146px; top: 30px;  left: -128px; transform: rotate(6deg); }
+  .sticker.s4 { width: 140px; top: 70px;  right: -112px; transform: rotate(-8deg); }
+  .sticker.s5 { width: 130px; top: 360px; left: -118px; transform: rotate(5deg); }
+  .sticker.s6 { width: 138px; top: 20px;  left: -122px; transform: rotate(-6deg); }
+  .sticker.s7 { width: 128px; top: 210px; right: -108px; transform: rotate(-5deg); }
+  .sticker.s8 { width: 150px; top: 180px; right: -134px; transform: rotate(7deg); }
+  /* very wide screens: push further into the roomy gutters */
+  @media (min-width: 1560px) {
+    .sticker.s1 { left: -170px; }
+    .sticker.s2 { right: -160px; }
+    .sticker.s3 { left: -180px; }
+    .sticker.s4 { right: -168px; }
+    .sticker.s5 { left: -178px; }
+    .sticker.s6 { left: -180px; }
+    .sticker.s7 { right: -166px; }
+    .sticker.s8 { right: -190px; }
+  }
+  /* hide when there isn't room in the margins */
+  @media (max-width: 1180px) { .sticker { display: none; } }
 
   header {
     padding: 72px 0 40px;
@@ -183,6 +217,34 @@
   }
   .callout strong { color: #5f2f18; }
 
+  .contact {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px 26px;
+    margin-top: 16px;
+  }
+  .contact-text { flex: 1; }
+  .contact-text h3 { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+  .contact-qr { text-align: center; flex-shrink: 0; }
+  .contact-qr img {
+    width: 150px;
+    height: 150px;
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 8px;
+    background: #fff;
+  }
+  .contact-qr span { display: block; font-size: 12px; color: var(--ink-soft); margin-top: 8px; }
+  @media (max-width: 620px) {
+    .contact { flex-direction: column-reverse; align-items: stretch; text-align: left; }
+    .contact-qr { align-self: center; }
+  }
+
   footer {
     text-align: center;
     padding: 50px 0 60px;
@@ -199,13 +261,13 @@
 
 <header>
   <div class="wrap">
-    <p class="eyebrow">Sage's sitting HQ</p>
-    <h1>Keep <span class="plant">Sage</span> alive</h1>
-    <p class="tagline">One place to see when Sage needs a sitter, block out days you can't do, and find everything you'd need while she's with you.</p>
+    <div class="sticker s1"><img src="stickers/sage1.png" alt=""></div>
+    <h1>Who's a good girl?<br><span class="plant">Sage</span></h1>
+    <p class="tagline">The one-stop shop for everything you need to know when it comes to keeping Sweet <span class="plant">Sage</span> alive.</p>
     <nav class="quick">
       <a href="#calendar">Calendar</a>
-      <a href="#food">Food</a>
-      <a href="#insurance">Insurance</a>
+      <a href="#food">Dinner?</a>
+      <a href="#insurance">If things go pear-shaped</a>
       <a href="#sage">About Sage</a>
     </nav>
   </div>
@@ -214,89 +276,80 @@
 <div class="wrap">
 
   <section id="calendar">
+    <div class="sticker s2"><img src="stickers/sage2.png" alt=""></div>
+    <div class="sticker s5"><img src="stickers/sage5.png" alt=""></div>
     <div class="sec-head">
       <span class="sec-num">01</span>
-      <h2>The calendar</h2>
+      <h2>Sage custodial calendar</h2>
     </div>
-    <p class="sec-note">This shows when Sage needs sitting and the days people have blocked out. To add days you can't do, open the shared Google Calendar (link below) and add an all-day event.</p>
+    <p class="sec-note">Who is free to look after me? This calendar automatically updates from your dates in the shared Google Calendar. If you're planning on heading off, or need to be away for a certain period, add it in so we can all plan and organise some fill-ins.</p>
 
-  <div class="cal-frame">
-  <iframe src="https://calendar.google.com/calendar/embed?src=96ee353d8f6e9fc06d48a17d9fe1b5d97b05a504202296652ae7f425038344de%40group.calendar.google.com&ctz=Australia%2FBrisbane&mode=MONTH" style="width:100%;height:560px;border:0;" frameborder="0" scrolling="no"></iframe>
-</div>
-
-    <div class="how">
-      <h3>How to log a day you can't sit</h3>
-      <ol>
-        <li>Open the shared calendar: <a class="inline" href="#" id="cal-link">add your calendar link here</a></li>
-        <li>Tap the day you're not available and add an all-day event.</li>
-        <li>Title it like <span class="tag">Dan — can't sit</span> so it's clear at a glance.</li>
-        <li>It'll show up here automatically. Done.</li>
-      </ol>
+    <div class="cal-frame">
+      <iframe src="https://calendar.google.com/calendar/embed?src=96ee353d8f6e9fc06d48a17d9fe1b5d97b05a504202296652ae7f425038344de%40group.calendar.google.com&ctz=Australia%2FBrisbane&mode=MONTH" style="width:100%;height:560px;border:0;" frameborder="0" scrolling="no"></iframe>
     </div>
   </section>
 
   <section id="food">
+    <div class="sticker s3"><img src="stickers/sage3.png" alt=""></div>
+    <div class="sticker s7"><img src="stickers/sage7.png" alt=""></div>
     <div class="sec-head">
       <span class="sec-num">02</span>
-      <h2>Food</h2>
+      <h2>Dinner?</h2>
     </div>
     <p class="sec-note">What she eats, how much, and when the deliveries land so nobody panics at an empty bowl.</p>
     <div class="cards">
       <div class="card">
         <h3>Meals</h3>
         <p class="sub">Keep to this and she's a happy dog</p>
-        <div class="field"><span class="k">Breakfast</span><span class="v">— add amount</span></div>
-        <div class="field"><span class="k">Dinner</span><span class="v">— add amount</span></div>
-        <div class="field"><span class="k">Food type / brand</span><span class="v">— add here</span></div>
-        <div class="field"><span class="k">Treats / no-gos</span><span class="v">— add here</span></div>
+        <div class="field"><span class="k">Breakfast</span><span class="v">She wishes</span></div>
+        <div class="field"><span class="k">Dinner</span><span class="v">3 scoops of hardbits</span></div>
+        <div class="field"><span class="k">Food type</span><span class="v">Pro Balance Chicken Adult</span></div>
+        <div class="field"><span class="k">Treats</span><span class="v">Flamin' Hot Cheetos</span></div>
       </div>
       <div class="card">
         <h3>Deliveries</h3>
         <p class="sub">When fresh food turns up</p>
-        <div class="field"><span class="k">Next delivery</span><span class="v">— add date</span></div>
-        <div class="field"><span class="k">Frequency</span><span class="v">— e.g. every 4 weeks</span></div>
-        <div class="field"><span class="k">Supplier</span><span class="v">— add name</span></div>
-        <div class="field"><span class="k">Where it's stored</span><span class="v">— add spot</span></div>
+        <div class="field"><span class="k">Frequency</span><span class="v">Fortnightly</span></div>
+        <div class="field"><span class="k">Supplier</span><span class="v">Pet Circle</span></div>
+        <div class="field"><span class="k">Stored</span><span class="v">Food bin on the deck, as Fingal</span></div>
       </div>
+    </div>
+    <div class="callout">
+      <strong>Note:</strong> Sage is a grazer. She'll spend all day taking little bits, so don't stress if she isn't hoofing down her meals. If you really want to test whether she's off her food, give her a chicken neck or something. And if the food deliveries are coming too often, let Duncan know to change the frequency.
     </div>
   </section>
 
   <section id="insurance">
+    <div class="sticker s4"><img src="stickers/sage4.png" alt=""></div>
     <div class="sec-head">
       <span class="sec-num">03</span>
-      <h2>Insurance &amp; vet</h2>
+      <h2>If things go pear-shaped</h2>
     </div>
     <p class="sec-note">The details you'd want fast if something's wrong. Keep sensitive numbers here only if you're comfortable, since anyone with the site link can read them.</p>
     <div class="cards">
       <div class="card">
         <h3>Pet insurance</h3>
         <p class="sub">For emergencies</p>
-        <div class="field"><span class="k">Provider</span><span class="v">— add name</span></div>
-        <div class="field"><span class="k">Policy number</span><span class="v">— add number</span></div>
-        <div class="field"><span class="k">Claims phone</span><span class="v">— add number</span></div>
-        <div class="field"><span class="k">Cover notes</span><span class="v">— add detail</span></div>
+        <div class="field"><span class="k">Provider</span><span class="v">Fetch</span></div>
+        <div class="field"><span class="k">Cover limit</span><span class="v">$30k</span></div>
+        <div class="field"><span class="k">Cover</span><span class="v">80%</span></div>
+        <div class="field"><span class="k">Excess</span><span class="v">$200</span></div>
+        <div class="field"><span class="k">Cover notes</span><span class="v">To make a claim, call Duncan</span></div>
       </div>
       <div class="card">
         <h3>Vet</h3>
         <p class="sub">Who to call</p>
-        <div class="field"><span class="k">Clinic</span><span class="v">— add name</span></div>
-        <div class="field"><span class="k">Phone</span><span class="v">— add number</span></div>
-        <div class="field"><span class="k">Address</span><span class="v">— add address</span></div>
-        <div class="field"><span class="k">After-hours / emergency</span><span class="v">— add number</span></div>
+        <div class="field"><span class="k">Clinic</span><span class="v">Tarragindi Vet</span></div>
+        <div class="field"><span class="k">Phone</span><span class="v"><a class="inline" href="tel:+61731890789">(07) 3189 0789</a></span></div>
+        <div class="field"><span class="k">Address</span><span class="v">1 Bapaume Rd, Tarragindi QLD 4121</span></div>
+        <div class="field"><span class="k">After-hours</span><span class="v"><a class="inline" href="https://maps.google.com/?q=AES+Jindalee+34+Goggs+Rd+Jindalee+QLD+4074">AES Jindalee — 34 Goggs Rd</a></span></div>
       </div>
-      <div class="card wide">
-        <h3>Microchip &amp; ID</h3>
-        <p class="sub">In case she wanders</p>
-        <div class="field"><span class="k">Microchip number</span><span class="v">— add number</span></div>
-        <div class="field"><span class="k">Registered to</span><span class="v">— add name / phone</span></div>
-      </div>
-    </div>
-    <div class="callout">
-      <strong>Heads up:</strong> a GitHub Pages site is public to anyone who has the link. If you'd rather not post the full policy or microchip numbers openly, write "ask Duncan" here and keep the real numbers somewhere private.
     </div>
   </section>
 
   <section id="sage">
+    <div class="sticker s6"><img src="stickers/sage6.png" alt=""></div>
+    <div class="sticker s8"><img src="stickers/sage8.png" alt=""></div>
     <div class="sec-head">
       <span class="sec-num">04</span>
       <h2>About Sage</h2>
@@ -306,12 +359,23 @@
       <div class="card wide">
         <h3>Good to know</h3>
         <p class="sub">Habits, quirks, house rules</p>
-        <div class="field"><span class="k">Walks</span><span class="v">— how often / where</span></div>
-        <div class="field"><span class="k">Sleeps</span><span class="v">— where at night</span></div>
-        <div class="field"><span class="k">Scared of</span><span class="v">— e.g. thunder, vacuum</span></div>
-        <div class="field"><span class="k">Loves</span><span class="v">— add here</span></div>
-        <div class="field"><span class="k">Commands she knows</span><span class="v">— add here</span></div>
-        <div class="field"><span class="k">Duncan's number</span><span class="v">— add here</span></div>
+        <div class="field"><span class="k">Walks</span><span class="v">Daily — loves the beach and swimming</span></div>
+        <div class="field"><span class="k">Sleeps</span><span class="v">A lot</span></div>
+        <div class="field"><span class="k">Hates</span><span class="v">Greyhounds</span></div>
+        <div class="field"><span class="k">Loves</span><span class="v">The beach</span></div>
+      </div>
+    </div>
+
+    <div class="contact">
+      <div class="contact-text">
+        <h3>Emergency? Contact Duncan</h3>
+        <p class="sub">Scan the QR to add him on WhatsApp, or reach him directly.</p>
+        <div class="field"><span class="k">Phone</span><span class="v"><a class="inline" href="tel:+61427716757">0427 716 757</a></span></div>
+        <div class="field"><span class="k">Email</span><span class="v"><a class="inline" href="mailto:dkesplin@gmail.com">dkesplin@gmail.com</a></span></div>
+      </div>
+      <div class="contact-qr">
+        <img src="stickers/qr.png" alt="WhatsApp QR code to add Duncan">
+        <span>Scan to add on WhatsApp</span>
       </div>
     </div>
   </section>
